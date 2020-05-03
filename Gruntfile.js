@@ -76,21 +76,6 @@ module.exports = (grunt) => {
       }
     },
 
-    // Minify images (basically just lossless compression)
-    imagemin: {
-      default: {
-        options: {
-          optimizationLevel: 3
-        },
-        files: [{
-          expand: true,
-          cwd: 'assets/client/images/',
-          src: ['**/*.png'],
-          dest: 'public/images/'
-        }]
-      }
-    },
-
     // Embed images in css
     imageEmbed: {
       default: {
@@ -411,7 +396,6 @@ module.exports = (grunt) => {
   grunt.loadNpmTasks('grunt-lineending');
   grunt.loadNpmTasks('grunt-release');
   grunt.loadNpmTasks('grunt-mocha-test');
-  grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.loadNpmTasks('grunt-image-embed');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-copy');
@@ -420,7 +404,7 @@ module.exports = (grunt) => {
   grunt.loadNpmTasks('grunt-zip-directories');
 
   // Default task, builds everything needed
-  grunt.registerTask('default', ['less:production', 'jshint', 'browserify-common', 'browserify-components', 'lineending:production', 'imageEmbed:default', 'copy:main', 'imagemin:default']);
+  grunt.registerTask('default', ['less:production', 'jshint', 'browserify-common', 'browserify-components', 'lineending:production', 'imageEmbed:default', 'copy:main']);
 
   // Run tests without compile (use watcher or manually build)
   grunt.registerTask('unittest', ['mochaTest:unit']);
